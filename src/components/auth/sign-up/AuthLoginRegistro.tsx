@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Registro from './Registro';
 
 type RegistroProps = {
-  mode: 'sign-up' | 'Registro' | 'Sign Up';
+  mode: 'sign-up';
   children?: React.ReactNode;
 };
 

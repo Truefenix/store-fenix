@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, ReactNode } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Entrada from './Entrada';
+import { enviarFormulario } from './enviarFormulario';
 
 type EntradaProps = {
-  mode: 'sign-in' | 'Login' | 'Sign In'; // ou string
+  mode: 'sign-in';
   children?: React.ReactNode;
 };
 
@@ -14,21 +14,13 @@ export default function AuthLoginEntrada({ mode, children }: EntradaProps) {
   const [senha, setSenha] = useState('');
   const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    const entrada = new Entrada(email, senha);
-    const result = await entrada.submit();
-
-    if (result.success) {
-      router.push('/dashboard');
-    } else {
-      alert(result.error);
-    }
+    enviarFormulario({ email, senha, router });
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={onSubmit}>
       <input
         type="email"
         value={email}
