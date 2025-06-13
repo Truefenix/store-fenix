@@ -2,33 +2,45 @@
 
 ````
 my-app/
-├── .env.local                   # Variáveis de ambiente (Firebase, DB, JWT, etc.)
-├── knexfile.ts                  # Configuração do Knex para Planetscale
+├── .env.local
+├── knexfile.ts
 ├── package.json
-├── tsconfig.json                # Configuração global do TypeScript
-├── src/
-│   ├── app/
-│   │   ├── api/
-│   │   │   ├── auth/                  # Rotas de login e registro
-│   │   │   │   ├── login/route.ts    # POST: autenticar usuário
-│   │   │   │   ├── register/route.ts # POST: criar usuário
-│   │   │   ├── upload/               # Upload de arquivos para Firebase
-│   │   │   │   └── route.ts          # POST: upload de arquivos (imagem, vídeo, PDF)
-│   │   │   └── users/
-│   │   │       ├── route.ts          # GET todos usuários / POST novo
-│   │   │       └── [id]/
-│   │   │           └── route.ts      # GET / PUT / DELETE de usuário
-│   │   ├── page.tsx                  # Página inicial ou dashboard
-│   │   └── layout.tsx                # Layout global da aplicação
-│   ├── components/                  # Componentes UI reutilizáveis (botões, inputs)
-│   ├── forms/                       # Formulários com Shadcn (ex: login, upload)
-│   ├── lib/
-│   │   ├── db.ts                    # Knex conectado ao Planetscale
-│   │   ├── firebase.ts              # Configuração do Firebase SDK
-│   │   └── upload.ts                # Função que faz upload no Firebase
-│   ├── middleware.ts               # (opcional) middleware de auth JWT/session
-│   └── types/
-│       ├── user.ts                 # Tipos relacionados ao usuário
-│       └── file.ts                 # Tipos de arquivos (imagem, vídeo, PDF)
+├── tsconfig.json
+└── src/
+    ├── app/
+    │   ├── api/
+    │   │   ├── auth/
+    │   │   │   ├── login/route.ts       # POST: login seguro com JWT
+    │   │   │   ├── register/route.ts    # POST: registro
+    │   │   │   └── me/route.ts          # GET: dados do usuário autenticado
+    │   │   ├── upload/
+    │   │   │   └── route.ts             # POST: upload autenticado via Firebase
+    │   │   └── users/
+    │   │       ├── route.ts             # GET/POST usuários (admin)
+    │   │       └── [id]/
+    │   │           └── route.ts         # GET/PUT/DELETE usuário específico
+    │   ├── (auth)/                      # Rotas públicas (sem login)
+    │   │   ├── login/page.tsx
+    │   │   └── register/page.tsx
+    │   ├── dashboard/page.tsx          # Rota protegida por middleware
+    │   ├── layout.tsx
+    │   └── middleware.ts               # JWT middleware global
+    │
+    ├── components/                     # Botões, campos, layout geral
+    ├── forms/
+    │   ├── LoginForm.tsx               # use client, faz fetch para login
+    │   └── RegisterForm.tsx
+    ├── lib/
+    │   ├── auth.ts                     # getUserFromCookie, isAuthenticated
+    │   ├── db.ts                       # Knex (Planetscale)
+    │   ├── firebase.ts                 # SDK Firebase
+    │   ├── upload.ts                   # Envia arquivos p/ Firebase
+    │   ├── jwt.ts                      # gerar/verificar JWT
+    │   └── rate-limit.ts               # Protege contra brute-force
+    ├── schemas/
+    │   └── auth.ts                     # Zod schemas (login, register)
+    └── types/
+        ├── user.ts
+        └── file.ts
 
 ````
