@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, ReactNode } from 'react';
+import { registrarFormulario } from './registrarFormulario';
 import { useRouter } from 'next/navigation';
-import Registro from './Registro';
 
 type RegistroProps = {
   mode: 'sign-up';
@@ -16,15 +16,7 @@ export default function AuthLoginRegistro({ mode, children }: RegistroProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    const registro = new Registro(email, senha);
-    const result = await registro.submit();
-
-    if (result.success) {
-      router.push('/dashboard');
-    } else {
-      alert(result.error);
-    }
+    registrarFormulario(email, senha, router);
   };
 
   return (

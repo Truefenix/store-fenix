@@ -18,18 +18,26 @@ my-app/
     │   │   └── users/
     │   │       ├── route.ts             # GET/POST usuários (admin)
     │   │       └── [id]/
-    │   │           └── route.ts         # GET/PUT/DELETE usuário específico
+    │   │               └── route.ts     # GET/PUT/DELETE usuário específico
+    │   │
     │   ├── (auth)/                      # Rotas públicas (sem login)
-    │   │   ├── login/page.tsx
-    │   │   └── register/page.tsx
+    │   │       ├── layout.tsx
+    │   │       ├── sign-in/
+    │   │       │       └── login/page.tsx
+    │   │       └── sign-up/
+    │   │               └── register/page.tsx
+    │   │
     │   ├── dashboard/page.tsx          # Rota protegida por middleware
-    │   ├── layout.tsx
-    │   └── middleware.ts               # JWT middleware global
+    │   └── layout.tsx
     │
     ├── components/                     # Botões, campos, layout geral
-    ├── forms/
-    │   ├── LoginForm.tsx               # use client, faz fetch para login
-    │   └── RegisterForm.tsx
+    │   ├── layout/ ThemeProviderWrapper.tsx
+    │   ├── auth/
+    │   │   ├── sign-in/
+    │   │   │   └── login/page.tsx      # use client, faz fetch para login
+    │   │   └── sign-up/
+    │   │       └── register/page.tsx
+    │
     ├── lib/
     │   ├── auth.ts                     # getUserFromCookie, isAuthenticated
     │   ├── db.ts                       # Knex (Planetscale)
@@ -37,10 +45,11 @@ my-app/
     │   ├── upload.ts                   # Envia arquivos p/ Firebase
     │   ├── jwt.ts                      # gerar/verificar JWT
     │   └── rate-limit.ts               # Protege contra brute-force
+    │
+    ├── middleware.ts                   # JWT middleware global (agora dentro de src/)
     ├── schemas/
     │   └── auth.ts                     # Zod schemas (login, register)
     └── types/
         ├── user.ts
         └── file.ts
-
 ````

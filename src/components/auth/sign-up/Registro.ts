@@ -1,3 +1,5 @@
+'use client';
+
 export default class Registro {
   email: string;
   senha: string;

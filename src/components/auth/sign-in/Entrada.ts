@@ -1,3 +1,5 @@
+'use client';
+
 export default class Entrada {
   email: string;
   senha: string;

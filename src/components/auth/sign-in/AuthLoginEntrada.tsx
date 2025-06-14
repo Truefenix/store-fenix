@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { enviarFormulario } from './enviarFormulario';
+import { entradaFormulario } from './entradaFormulario';
 
 type EntradaProps = {
   mode: 'sign-in';
@@ -16,7 +16,7 @@ export default function AuthLoginEntrada({ mode, children }: EntradaProps) {
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    enviarFormulario({ email, senha, router });
+    entradaFormulario(email, senha, router);
   };
 
   return (

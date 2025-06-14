@@ -1,23 +1,19 @@
+'use client';
+
 import Entrada from './Entrada';
 import { useRouter } from 'next/navigation';
 
-type SubmitProps = {
-  router: ReturnType<typeof useRouter>;
-  email: string;
-  senha: string;
-};
-
-export const enviarFormulario = async ({
-  router,
-  email,
-  senha,
-}: SubmitProps) => {
+export async function entradaFormulario(
+  email: string,
+  senha: string,
+  router: any,
+) {
   const entrada = new Entrada(email, senha);
   const result = await entrada.submit();
 
   if (result.success) {
-    router.push('/dashboard');
+    router.push('/dashboard'); // rota '/dashboard' quando faz login
   } else {
     alert(result.error);
   }
-};
+}
