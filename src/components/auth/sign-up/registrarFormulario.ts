@@ -1,6 +1,5 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import Registro from './Registro';
 
 export async function registrarFormulario(

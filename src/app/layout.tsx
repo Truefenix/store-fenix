@@ -11,7 +11,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <link rel="icon" type="image/png" href="/favicon.png" />
+      <link rel="icon" type="image/png" href="/vercel.svg" />
       <body>
         <ThemeProviderWrapper>
           <GlobalStyles />
