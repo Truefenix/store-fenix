@@ -7,7 +7,6 @@ npx create-next-app .
 y em todos.
 ```
 ---
----
 
 ## 2. ESLint
 
